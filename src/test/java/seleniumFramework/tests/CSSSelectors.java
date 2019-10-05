@@ -1,8 +1,10 @@
-import com.framework.tests.BaseClass;
+package seleniumFramework.tests;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
+import seleniumFramework.utils.BaseClass;
 
 public class CSSSelectors extends BaseClass {
 

@@ -1,8 +1,10 @@
-import com.framework.tests.BaseClass;
+package seleniumFramework.tests;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import seleniumFramework.utils.BaseClass;
 
 
 public class GoogleTest extends BaseClass {
