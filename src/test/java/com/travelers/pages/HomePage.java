@@ -49,8 +49,11 @@ public class HomePage  {
     @FindBy(xpath = "//table[@class='bgwhite table table-striped']")
     private WebElement restulsTable;
 
-   private SeleniumHelper helper = new
+    @FindBy(xpath = "//div[@class='select2-result-label']")
+    private WebElement locationLabel;
 
+    private WebDriver driver;
+    private SeleniumHelper helper;
 
 
 
@@ -60,57 +63,46 @@ public class HomePage  {
     public HomePage(WebDriver driver){
             PageFactory.initElements(driver, this);
             this.helper = new SeleniumHelper(driver);
+            this.driver = driver;
     }
 
-    public void sendCityCityHotel(String CityName) {
+    public HomePage sendCityCityHotel(String CityName) {
         searchClick.click();
         searchInput.sendKeys(CityName);
+        helper.waitForElementToBeDisplayed(locationLabel);
         searchInput.sendKeys(Keys.ENTER);
+        return this;
 
     }
 
-    public void setRangeDate(String checkInDate, String checkOutdate){
+    public HomePage setRangeDate(String checkInDate, String checkOutdate){
         checkInInput.sendKeys(checkInDate);
         checkOutInput.sendKeys(checkOutdate);
         checkOutInput.click();
+        return this;
     }
 
-    public void openTravellersModel(){
+    public HomePage openTravellersModel(){
 
         travellersInput.click();
+        helper.waitForElementToBeDisplayed(adultPlusBtn);
+        return this;
     }
 
-    public void addAdult(){
+    public HomePage addAdult(){
         adultPlusBtn.click();
+        return this;
     }
 
-    public void addChild(){
+    public HomePage addChild(){
         childPlusBtn.click();
+        return this;
     }
 
-    public void performSearch(){
+    public ResultsPage performSearch(){
         SearchBtn.click();
+        return new ResultsPage(driver);
     }
-
-    public List<String> getHotelNames() throws InterruptedException {
-
-        List<String> hotelNames = new ArrayList<>();
-        Thread.sleep(3000);
-        List<WebElement> hotelNamesWebElements = restulsTable.findElements(By.xpath("//h4//b"));
-        for(WebElement hotelNameWebElement : hotelNamesWebElements){
-            System.out.println(hotelNameWebElement.getText());
-            hotelNames.add(hotelNameWebElement.getText());
-        }
-
-        return hotelNames;
-    }
-
-
-    public List<String> getHotelPrices(){
-        List<WebElement> hotelPrices = restulsTable.findElements(By.xpath("//div[contains(@class, 'price_tab')]//b"));
-        List<String> prices = hotelPrices.stream().map(element -> element.getText()).collect(Collectors.toList());
-        return prices;
-            }
 
 
 }

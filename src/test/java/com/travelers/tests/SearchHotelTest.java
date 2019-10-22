@@ -1,28 +1,29 @@
 package com.travelers.tests;
 
 import com.travelers.pages.HomePage;
+import com.travelers.pages.ResultsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
 
 public class SearchHotelTest extends BaseSeleniumTest {
 
     @Test
-    public void searchHotelTest() throws InterruptedException {
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    public void searchHotelTest() {
         driver.get("http://www.kurs-selenium.pl/demo/");
         HomePage homePage = new HomePage(driver);
-        homePage.sendCityCityHotel("Dubai");
-        homePage.setRangeDate("09/11/2018", "22/12/2018");
-        homePage.openTravellersModel();
-        homePage.addAdult();
-        homePage.addChild();
-        homePage.performSearch();
-        List<String> hotelnames = homePage.getHotelNames();
-        List<String> hotelPrices = homePage.getHotelPrices();
+        ResultsPage resultsPage = homePage.sendCityCityHotel("Dubai")
+                .setRangeDate("09/11/2018", "22/12/2018")
+                .openTravellersModel()
+                .addAdult()
+                .addAdult()
+                .addChild()
+                .addChild()
+                .performSearch();
+        List<String> hotelnames = resultsPage.getHotelNames();
+        List<String> hotelPrices = resultsPage.getHotelPrices();
 
         List<String> hotelNamesList = new ArrayList<String>();
         hotelNamesList.add("Jumeirah Beach Hotel");
@@ -37,18 +38,12 @@ public class SearchHotelTest extends BaseSeleniumTest {
         hotelNamesPrices.add("$150");
 
 
-
         for(int i = 0; i < hotelnames.size(); i++){
             Assert.assertEquals(hotelNamesList.get(0), hotelnames.get(0));
             Assert.assertEquals(hotelNamesPrices.get(0), hotelPrices.get(0));
         }
 
 
-
-
-
-
     }
-
 
 }
