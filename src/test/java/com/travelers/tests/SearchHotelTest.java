@@ -1,14 +1,16 @@
 package com.travelers.tests;
 
+import com.travelers.helpers.TestListener;
 import com.travelers.pages.HomePage;
 import com.travelers.pages.ResultsPage;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Listeners(TestListener.class)
 public class SearchHotelTest extends BaseSeleniumTest {
 
     @Test
@@ -38,9 +40,11 @@ public class SearchHotelTest extends BaseSeleniumTest {
         hotelNamesPrices.add("$80");
         hotelNamesPrices.add("$150");
 
+
         for(int i = 0; i < hotelnames.size(); i++){
-            Assert.assertEquals(hotelNamesList.get(0), hotelnames.get(0));
-            Assert.assertEquals(hotelNamesPrices.get(0), hotelPrices.get(0));
+            System.out.println(i);
+            Assert.assertEquals(hotelNamesList.get(i), hotelnames.get(i));
+            Assert.assertEquals(hotelNamesPrices.get(i), hotelPrices.get(i));
         }
 
     }

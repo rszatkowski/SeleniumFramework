@@ -1,5 +1,6 @@
 package com.travelers.tests;
 
+import com.travelers.helpers.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -15,8 +16,7 @@ public class BaseSeleniumTest {
         System.out.println("Before test");
         String driverpath = "src/main/resources/executables.drivers/chromedriver";
         System.setProperty("webdriver.chrome.driver", driverpath);
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        driver = DriverFactory.getDriver();
     }
 
 

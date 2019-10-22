@@ -1,6 +1,6 @@
 package com.travelers.annotations;
 
-import org.testng.Assert;
+import com.travelers.helpers.TestListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
