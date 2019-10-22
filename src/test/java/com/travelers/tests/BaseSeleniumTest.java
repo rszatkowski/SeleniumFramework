@@ -23,7 +23,7 @@ public class BaseSeleniumTest {
     @AfterTest
     public void tearDown(){
         System.out.println("After test");
-       // driver.quit();
+        driver.quit();
     }
 
 
