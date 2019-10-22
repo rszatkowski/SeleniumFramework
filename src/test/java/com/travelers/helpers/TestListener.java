@@ -1,6 +1,8 @@
-package com.travelers.annotations;
+package com.travelers.helpers;
 
 import org.testng.*;
+
+import java.io.IOException;
 
 
 public class TestListener implements ITestListener {
@@ -17,7 +19,12 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("On test failure");
+        try {
+            System.out.println("On test failure");
+            SeleniumHelper.takeScreenshot(DriverFactory.getDriver());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
