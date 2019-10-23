@@ -13,7 +13,11 @@
         <maven-compiler-target>8</maven-compiler-target>
         <testNg>7.0.0-beta3</testNg>
         <selenium-java>3.141.59</selenium-java>
-
+        <poi>4.1.0</poi>
+        <poi-ooxml>4.1.0</poi-ooxml>
+        <commons-configuration2>2.6</commons-configuration2>
+        <commons-beanutils>1.9.3</commons-beanutils>
+        <extentreports>3.1.5</extentreports>
     </properties>
 
     <build>
@@ -41,6 +45,36 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium-java}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi-ooxml}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-configuration2</artifactId>
+            <version>${commons-configuration2}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons-beanutils}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extentreports}</version>
         </dependency>
 
     </dependencies>

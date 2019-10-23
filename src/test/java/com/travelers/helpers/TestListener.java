@@ -21,8 +21,8 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         try {
             System.out.println("On test failure");
-            SeleniumHelper.takeScreenshot(DriverFactory.getDriver());
-        } catch (IOException e) {
+            SeleniumHelper.takeScreenshot(DriverFactory.getDriver(DriverType.CHROME));
+        } catch (IOException | NoSuchDriverException e) {
             e.printStackTrace();
         }
     }
