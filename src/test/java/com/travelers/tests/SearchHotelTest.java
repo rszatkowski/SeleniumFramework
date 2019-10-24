@@ -19,29 +19,33 @@ public class SearchHotelTest extends BaseSeleniumTest {
 
     @Test(dataProvider = "getData")
     public void searchHotelTest(String city, String checkInDate, String checkOutDate,
-                                String fHotel, String fPrice, String sHotel, String sPrice, String tHotel, String tPrice, String lHotel, String lPrice) {
+                                String fHotel, String fPrice, String sHotel, String sPrice, String tHotel, String tPrice, String lHotel, String lPrice) throws IOException {
         ExtentTest test = reports.createTest("Search Hotel Test");
         driver.get("http://www.kurs-selenium.pl/demo/");
         HomePage homePage = new HomePage(driver);
-        test.info("On PHP travelers Home Page");
-        ResultsPage resultsPage = homePage.sendCityCityHotel(city)
+
+        test.info("On PHP travelers Home Page", getScreenshot());
+        homePage.sendCityCityHotel(city)
                 .setRangeDate(checkInDate, checkOutDate)
                 .openTravellersModel()
                 .addAdult()
                 .addAdult()
                 .addChild()
-                .addChild()
-                .performSearch();
-        test.info("After peforming search");
+                .addChild();
 
-        test.info("Checking hotel names");
+        String infoText = "Before performing search for city %s, check in %s and check out %s";
+        test.info(String.format(infoText, city, checkInDate, checkOutDate), getScreenshot());
+
+        ResultsPage resultsPage = homePage.performSearch();
+
+        test.info("Checking hotel names", getScreenshot());
         List<String> hotelnames = resultsPage.getHotelNames();
         Assert.assertEquals(fHotel, hotelnames.get(0));
         Assert.assertEquals(sHotel, hotelnames.get(1));
         Assert.assertEquals(tHotel, hotelnames.get(2));
         Assert.assertEquals(lHotel, hotelnames.get(3));
 
-        test.info("Checking hotel prices");
+        test.info("Checking hotel prices", getScreenshot());
         List<String> hotelPrices = resultsPage.getHotelPrices();
         Assert.assertEquals(fPrice, hotelPrices.get(0));
         Assert.assertEquals(sPrice, hotelPrices.get(1));
@@ -54,12 +58,13 @@ public class SearchHotelTest extends BaseSeleniumTest {
     public Object[][] getData(){
         Object[][] data = null;
         try {
-            data = ExcelHelper.readExcelFile(new File("src//main//resources//files/Dane.xlsx"));
+            data = ExcelHelper.readExcelFile(new File("src//test//resources//files/Dane.xlsx"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return data;
     }
+
 
 
 }

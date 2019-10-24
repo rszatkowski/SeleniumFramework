@@ -1,4 +1,4 @@
-package com.travelers.helpers;
+package com.travelers.utils;
 
 public enum DriverType {
 

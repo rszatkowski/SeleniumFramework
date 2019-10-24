@@ -18,6 +18,7 @@
         <commons-configuration2>2.6</commons-configuration2>
         <commons-beanutils>1.9.3</commons-beanutils>
         <extentreports>3.1.5</extentreports>
+        <log4j>1.2.17</log4j>
     </properties>
 
     <build>
@@ -75,6 +76,12 @@
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>${extentreports}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j}</version>
         </dependency>
 
     </dependencies>

@@ -1,5 +1,9 @@
 package com.travelers.helpers;
 
+import com.travelers.exceptions.NoSuchDriverException;
+import com.travelers.utils.DriverFactory;
+import com.travelers.utils.DriverType;
+import org.apache.log4j.Logger;
 import org.testng.*;
 
 import java.io.IOException;
@@ -7,9 +11,13 @@ import java.io.IOException;
 
 public class TestListener implements ITestListener {
 
+    Logger log = Logger.getLogger(TestListener.class);
+
+
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.println("On test start");
+
+        log.debug("On test start");
     }
 
     @Override
@@ -23,32 +31,32 @@ public class TestListener implements ITestListener {
             System.out.println("On test failure");
             SeleniumHelper.takeScreenshot(DriverFactory.getDriver(DriverType.CHROME));
         } catch (IOException | NoSuchDriverException e) {
-            e.printStackTrace();
+            log.error(e.getStackTrace());
         }
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        System.out.println("On test skipped");
+        log.debug("On test skipped");
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-        System.out.println("On test failed withing success percentage");
+        log.debug("On test failed withing success percentage");
     }
 
     @Override
     public void onTestFailedWithTimeout(ITestResult result) {
-        System.out.println("On test failed with timeout");
+        log.debug("On test failed with timeout");
     }
 
     @Override
     public void onStart(ITestContext context) {
-        System.out.println("On Start");
+        log.debug("On Start");
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        System.out.println("On Finish");
+        log.debug("On Finish");
     }
 }

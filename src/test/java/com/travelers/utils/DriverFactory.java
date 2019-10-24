@@ -1,5 +1,6 @@
-package com.travelers.helpers;
+package com.travelers.utils;
 
+import com.travelers.exceptions.NoSuchDriverException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -23,14 +24,14 @@ private static WebDriver driverInstance;
     private static void getSpecyficDriverType(DriverType driverType) throws NoSuchDriverException {
         switch (driverType){
             case CHROME:
-                File chromeDriver = new File("src/main/resources/executables.drivers/chromedriver");
+                File chromeDriver = new File("src/test/resources/executables.drivers/chromedriver");
                 ChromeDriverService chromeDriverService = new ChromeDriverService.Builder()
                         .usingDriverExecutable(chromeDriver)
                         .usingAnyFreePort().build();
                 driverInstance = new ChromeDriver(chromeDriverService);
                 break;
             case FIREFOX:
-                File firefoxDriver = new File("src/main/resources/executables.drivers/geckodriver");
+                File firefoxDriver = new File("src/test/resources/executables.drivers/geckodriver");
                 GeckoDriverService geckoDriverService = new GeckoDriverService.Builder()
                         .usingDriverExecutable(firefoxDriver)
                         .usingAnyFreePort().build();

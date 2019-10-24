@@ -1,6 +1,7 @@
 package com.travelers.pages;
 
 import com.travelers.helpers.SeleniumHelper;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,7 +44,9 @@ public class HomePage  {
     private WebDriver driver;
     private SeleniumHelper helper;
 
-    //Page factory initialization
+
+    private Logger log = Logger.getLogger(HomePage.class);
+
     public HomePage(WebDriver driver){
             PageFactory.initElements(driver, this);
             this.helper = new SeleniumHelper(driver);
@@ -51,40 +54,50 @@ public class HomePage  {
     }
 
     public HomePage sendCityCityHotel(String CityName) {
+        log.info("Setting city name");
         searchClick.click();
         searchInput.sendKeys(CityName);
         helper.waitForElementToBeDisplayed(locationLabel);
         searchInput.sendKeys(Keys.ENTER);
+        log.info("City name is set");
         return this;
 
     }
 
     public HomePage setRangeDate(String checkInDate, String checkOutdate){
+        log.info("Setting date range");
         checkInInput.sendKeys(checkInDate);
         checkOutInput.sendKeys(checkOutdate);
         checkOutInput.click();
+        log.info("Date range is set");
         return this;
     }
 
     public HomePage openTravellersModel(){
-
+        log.info("Opening travelers model");
         travellersInput.click();
         helper.waitForElementToBeDisplayed(adultPlusBtn);
+        log.info("Travellers model is visible");
         return this;
     }
 
     public HomePage addAdult(){
+        log.info("Adding adult passenger");
         adultPlusBtn.click();
+        log.info("Adult passenger added");
         return this;
     }
 
     public HomePage addChild(){
+        log.info("Adding child passenger");
         childPlusBtn.click();
+        log.info("Child passenger added");
         return this;
     }
 
     public ResultsPage performSearch(){
         SearchBtn.click();
+        log.info("Search action performed");
         return new ResultsPage(driver);
     }
 

@@ -13,7 +13,7 @@ public class PropertyLoader {
         //PropertiesConfiguration config = configs.properties("src//main//resources//test.properties");
         //config.getString("driver");
         //config.getString("isDev");
-        return configs.properties("src//main//resources//test.properties");
+        return configs.properties("src//test//resources//test.properties");
     }
 
     public static void main(String[] args) throws ConfigurationException {
