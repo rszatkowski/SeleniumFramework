@@ -1,10 +1,10 @@
-package com.travelers.tests;
+package iotConti.tests;
 
 import com.aventstack.extentreports.ExtentTest;
-import com.travelers.helpers.ExcelHelper;
-import com.travelers.helpers.TestListener;
-import com.travelers.pages.HomePage;
-import com.travelers.pages.ResultsPage;
+import iotConti.helpers.ExcelHelper;
+import iotConti.helpers.TestListener;
+import iotConti.pages.HomePage;
+import iotConti.pages.ResultsPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
@@ -15,13 +15,13 @@ import java.io.IOException;
 import java.util.List;
 
 @Listeners(TestListener.class)
-public class SearchHotelTest extends BaseSeleniumTest {
+public class SearchHotelTest2 extends BaseSeleniumTest {
 
     @Test(dataProvider = "getData")
     public void searchHotelTest(String city, String checkInDate, String checkOutDate,
                                 String fHotel, String fPrice, String sHotel, String sPrice, String tHotel, String tPrice, String lHotel, String lPrice) throws IOException {
         ExtentTest test = reports.createTest("Search Hotel Test");
-        driver.get("http://www.kurs-selenium.pl/demo/");
+        driver.get("http://172.26.215.16:1234/#/");
         HomePage homePage = new HomePage(driver);
 
         test.info("On PHP iotConti Home Page", getScreenshot());
