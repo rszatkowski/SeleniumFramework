@@ -19,31 +19,34 @@ public class SeleniumHelper {
         this.driver = driver;
     }
 
-    public void waitForElementToBeDisplayed(By locator){
+    public SeleniumHelper waitForElementToBeDisplayed(By locator){
         FluentWait<WebDriver> wait = new FluentWait<>(driver);
         wait.withTimeout(Duration.ofSeconds(15))
                 .pollingEvery(Duration.ofMillis(1000))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return this;
 
     }
 
-    public void waitForElementToBeDisplayed(WebElement element){
+    public SeleniumHelper waitForElementToBeDisplayed(WebElement element){
         FluentWait<WebDriver> wait = new FluentWait<>(driver);
         wait.withTimeout(Duration.ofSeconds(15))
                 .pollingEvery(Duration.ofMillis(1000))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.visibilityOf(element));
+        return this;
 
     }
 
-    public void waitForListOfWebElements(List<WebElement> elementList){
+    public SeleniumHelper waitForListOfWebElements(List<WebElement> elementList){
         FluentWait<WebDriver> wait = new FluentWait<>(driver);
         wait.withTimeout(Duration.ofSeconds(15))
                 .pollingEvery(Duration.ofMillis(1000))
                 .ignoring(NoSuchElementException.class);
         wait.until(driver ->
                 elementList.size() > 0);
+        return this;
 
     }
 

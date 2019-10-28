@@ -20,6 +20,7 @@ public class LoginPage {
 
     private WebDriver driver;
     private SeleniumHelper helper;
+    private DevicePage devicePage;
 
 
     private Logger log = Logger.getLogger(LoginPage.class);
@@ -31,12 +32,14 @@ public class LoginPage {
     }
 
 
-    public LoginPage loginIntoSystem(String login, String password){
+    public LoginPage loginIntoSystem(String login, String password) throws InterruptedException {
         log.info("Login into the application");
         helper.waitForElementToBeDisplayed(loginInput);
         loginInput.sendKeys(login);
         passwordInput.sendKeys(password);
         loginButton.click();
+
+
         return this;
     }
 
